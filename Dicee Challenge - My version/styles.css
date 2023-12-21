@@ -1,0 +1,23 @@
+body {
+    background-color: #00ADB5;
+}
+
+body * {
+    color: #EEEEEE;
+}
+
+.acolor {
+    color: #EEEEEE;
+}
+
+h1 {
+    color: #222831
+}
+
+h2 {
+    color: #393E46;
+}
+
+p {
+    margin-bottom: 0px;
+}
