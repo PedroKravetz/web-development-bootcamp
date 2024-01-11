@@ -30,7 +30,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 function verifyTitle(req, res, next) {
   if (req.method === "POST" && req.url === "/create") {
     if (titles.includes(req.body["title"])) {
-      return res.render("create.ejs", { error: 1 });
+      return res.render("create.ejs", {
+        error: 1,
+        title: req.body["title"],
+        post: req.body["post"],
+      });
     }
   }
   console.log(req.method);
@@ -74,8 +78,8 @@ app.get("/create", (req, res) => {
   res.render("create.ejs");
 });
 
-app.post("/view", (req, res) => {
-  res.render("view.ejs", {});
+app.get("/edit", (req, res) => {
+  res.render("edit.ejs", {});
 });
 
 app.listen(port, () => {

@@ -3,14 +3,16 @@
 <div class="container my-3">
   <div class="row g-5">
     <div class="col-md-8">
-<% if (locals.post) { %>
+<% if (post.length != 0) { %>
     <% for (var i = post.length-1; i>=0; i--) {%>
         <article class="blog-post">
             <h2 class="display-5 link-body-emphasis mb-1"><%= titles[i] %></h2>
             <p class="blog-post-meta"><%= timeStamp[i] %></p>
             <p> <%= post[i] %> </p>
     <% } %>
-<% } %> 
+<% } else { %>
+    <h1>There are no posts!!!</h1>
+<% } %>
     </div>
 
     <div class="col-md-4">
