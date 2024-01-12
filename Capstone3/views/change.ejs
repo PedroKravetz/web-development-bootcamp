@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs"); %>
+<div class="container my-4">
+  <form action="/update" method="POST">
+    <div class="form-group">
+      <label for="formGroupExampleInput">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        value=<%= titles %>
+      required />
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Post</label>
+      <textarea class="form-control" name="post" rows="3" required>
+<%= post %></textarea
+      >
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="index"
+        value=<%= index %>
+      hidden />
+    </div>
+    <div class="form-group mt-2">
+      <button type="submit" class="btn btn-primary">Edit</button>
+      <a href="/">
+        <button type="button" class="btn btn-danger">Cancel</button>
+      </a>
+    </div>
+    <% if (locals.error) { %>
+    <div class="alert alert-danger mt-2" role="alert">
+      A post with that Title already exists!
+    </div>
+    <% } %>
+  </form>
+</div>
+
+<%- include("partials/footer.ejs"); %>

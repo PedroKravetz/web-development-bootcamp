@@ -36,6 +36,18 @@ function verifyTitle(req, res, next) {
         post: req.body["post"],
       });
     }
+  } else if (req.method === "POST" && req.url === "/update") {
+    if (
+      titles.includes(req.body["title"]) &&
+      req.body["index"] != titles.indexOf(req.body["title"])
+    ) {
+      return res.render("change.ejs", {
+        error: 1,
+        titles: req.body["title"],
+        post: req.body["post"],
+        index: req.body["index"],
+      });
+    }
   }
   console.log(req.method);
   console.log(req.url);
@@ -62,15 +74,17 @@ app.post("/create", (req, res) => {
   res.redirect("/");
 });
 
-app.delete("/delete", (req, res) => {
-  post.splice(req.body["index"], 1);
-  titles.splice(req.body["index"], 1);
+app.post("/delete", (req, res) => {
+  var index = titles.indexOf(req.body["title"]);
+  titles.splice(index, 1);
+  post.splice(index, 1);
+  timeStamp.splice(index, 1);
   res.redirect("/");
 });
 
 app.post("/update", (req, res) => {
-  post[req.body["index"]] = req.body["post"];
   titles[req.body["index"]] = req.body["title"];
+  post[req.body["index"]] = req.body["post"];
   res.redirect("/");
 });
 
@@ -78,8 +92,16 @@ app.get("/create", (req, res) => {
   res.render("create.ejs");
 });
 
+app.post("/change", (req, res) => {
+  res.render("change.ejs", {
+    post: req.body["post"],
+    titles: req.body["title"],
+    index: titles.indexOf(req.body["title"]),
+  });
+});
+
 app.get("/edit", (req, res) => {
-  res.render("edit.ejs", {});
+  res.render("edit.ejs", { post: post, titles: titles, timeStamp: timeStamp });
 });
 
 app.listen(port, () => {
