@@ -23,25 +23,32 @@
             <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
           </ul>
 
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <form
+            class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+            id="search"
+            action="/search"
+            method="POST"
+          >
             <input
               type="search"
               class="form-control form-control-dark text-bg-dark"
               placeholder="Search..."
               aria-label="Search"
-              id="search"
+              name="search"
             />
+            <input type="text" hidden value="Ingredient" name="filter" id="Filter">
           </form>
 
           <div class="text-end">
             <button
-              type="button"
+              type="submit"
+              form="search"
               class="btn btn-outline-light me-2"
               id="searchBT"
             >
               Search
             </button>
-            <button type="button" class="btn btn-info me-2" id="filter">
+            <button type="input" class="btn btn-info me-2" id="filter">
               Ingredient
             </button>
             <a href="/random"
@@ -51,3 +58,4 @@
         </div>
       </div>
     </header>
+
